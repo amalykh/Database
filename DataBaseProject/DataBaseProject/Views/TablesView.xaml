@@ -1,0 +1,101 @@
+﻿<UserControl x:Class="DataBaseProject.Views.TablesView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" d:DesignWidth="602" d:DesignHeight="391">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="155*"/>
+            <ColumnDefinition Width="53*"/>
+            <ColumnDefinition Width="437*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Background="#FFE5E5E5" Grid.ColumnSpan="3">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="64*"/>
+                <RowDefinition Height="327*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="142*"/>
+                <ColumnDefinition Width="503*"/>
+            </Grid.ColumnDefinitions>
+            <ListBox Name="TablesListDataGrid" SelectedIndex="{Binding SelectedTableIndex}" SelectionMode="Single"
+                              ItemsSource="{Binding Tables}" Grid.RowSpan="2">
+            </ListBox>
+            <TabControl Grid.Column="1" Grid.RowSpan="2">
+                <TabItem Header="Table">
+                    <Grid Background="#FFE5E5E5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="9*"/>
+                            <ColumnDefinition Width="69*"/>
+                            <ColumnDefinition Width="5*"/>
+                            <ColumnDefinition Width="69*"/>
+                            <ColumnDefinition Width="8*"/>
+                            <ColumnDefinition Width="66*"/>
+                            <ColumnDefinition Width="237*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="12*"/>
+                            <RowDefinition Height="22*"/>
+                            <RowDefinition Height="7*"/>
+                            <RowDefinition Height="350*"/>
+                        </Grid.RowDefinitions>
+                        <Button Name="InsertColumn"  Content="Insert column" Grid.Column="1" Grid.Row="1"/>
+                        <Button Name="DeleteColumn" Content="Delete column" Grid.Row="1" Grid.Column="3"/>
+                        <Button Name="EditColumn"  Content="Edit column" Grid.Column="5" Grid.Row="1"/>
+                        <DataGrid ItemsSource="{Binding Columns}" IsReadOnly="True" CanUserSortColumns="False" CanUserReorderColumns="False" Grid.Row="3" Grid.ColumnSpan="7">
+                            <DataGrid.ColumnHeaderStyle>
+                                <Style TargetType="{x:Type DataGridColumnHeader}" BasedOn="{StaticResource {x:Type DataGridColumnHeader}}">
+                                    <Setter Property="ContentTemplate">
+                                        <Setter.Value>
+                                            <DataTemplate>
+                                                <TextBlock Text="{TemplateBinding Content}" HorizontalAlignment="Center"/>
+                                            </DataTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </DataGrid.ColumnHeaderStyle>
+                        </DataGrid>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Data">
+                    <Grid Background="#FFE5E5E5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="9*"/>
+                            <ColumnDefinition Width="69*"/>
+                            <ColumnDefinition Width="5*"/>
+                            <ColumnDefinition Width="69*"/>
+                            <ColumnDefinition Width="8*"/>
+                            <ColumnDefinition Width="66*"/>
+                            <ColumnDefinition Width="237*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="12*"/>
+                            <RowDefinition Height="22*"/>
+                            <RowDefinition Height="7*"/>
+                            <RowDefinition Height="350*"/>
+                        </Grid.RowDefinitions>
+                        <Button Name="InsertRow"  Content="Insert row" Grid.Column="1" Grid.Row="1"/>
+                        <Button Name="DeleteRow" Content="Delete row" Grid.Row="1" Grid.Column="3"/>
+                        <Button Name="EditRow"  Content="Edit row" Grid.Column="5" Grid.Row="1"/>
+                        <DataGrid Name="DataTableDataGrid" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="6" ItemsSource="{Binding TableDataTable}" IsReadOnly="True" SelectionMode="Single"
+                                  SelectedIndex="{Binding SelectedDataTableIndex}" CanUserSortColumns="False" CanUserReorderColumns="False"
+                                  >
+                            <DataGrid.ColumnHeaderStyle>
+                                <Style TargetType="{x:Type DataGridColumnHeader}" BasedOn="{StaticResource {x:Type DataGridColumnHeader}}">
+                                    <Setter Property="ContentTemplate">
+                                        <Setter.Value>
+                                            <DataTemplate>
+                                                <TextBlock Text="{TemplateBinding Content}" HorizontalAlignment="Center"/>
+                                            </DataTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </DataGrid.ColumnHeaderStyle>
+                        </DataGrid>
+                    </Grid>
+                </TabItem>
+            </TabControl>
+        </Grid>
+    </Grid>
+</UserControl>

@@ -1,0 +1,18 @@
+﻿<Window x:Class="DataBaseProject.Views.MainControlView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:cal="http://www.caliburnproject.org"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        Title="MainControlView" Height="783" Width="1287">
+    <Grid>
+        <TabControl>
+            <TabItem Header="SQL Commands">
+                <ContentControl cal:View.Model="{Binding RunControl}"/>
+            </TabItem>
+            <TabItem Header="Tables">
+                <ContentControl cal:View.Model="{Binding TablesControl}"/>
+            </TabItem>
+        </TabControl>
+
+    </Grid>
+</Window>
