@@ -48,8 +48,7 @@
                         </Grid.RowDefinitions>
                         <Button Name="InsertColumn"  Content="Insert column" Grid.Column="1" Grid.Row="1"/>
                         <Button Name="DeleteColumn" Content="Delete column" Grid.Row="1" Grid.Column="3"/>
-                        <Button Name="EditColumn"  Content="Edit column" Grid.Column="5" Grid.Row="1"/>
-                        <DataGrid ItemsSource="{Binding Columns}" IsReadOnly="True" CanUserSortColumns="False" CanUserReorderColumns="False" Grid.Row="3" Grid.ColumnSpan="7">
+                        <DataGrid SelectedIndex="{Binding SelectedTableColumnIndex}" ItemsSource="{Binding Columns}" IsReadOnly="True" CanUserSortColumns="False" CanUserReorderColumns="False" Grid.Row="3" Grid.ColumnSpan="7">
                             <DataGrid.ColumnHeaderStyle>
                                 <Style TargetType="{x:Type DataGridColumnHeader}" BasedOn="{StaticResource {x:Type DataGridColumnHeader}}">
                                     <Setter Property="ContentTemplate">

@@ -1,0 +1,42 @@
+﻿<Window x:Class="DataBaseProject.Views.CreateColumnView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="CreateColumnView" Height="347.333" Width="479.333">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="18*"/>
+            <ColumnDefinition Width="101*"/>
+            <ColumnDefinition Width="42*"/>
+            <ColumnDefinition Width="83*"/>
+            <ColumnDefinition Width="77*"/>
+            <ColumnDefinition Width="83*"/>
+            <ColumnDefinition Width="38*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="22*"/>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="22*"/>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="22*"/>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="22*"/>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="22*"/>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="22*"/>
+            <RowDefinition Height="7*"/>
+        </Grid.RowDefinitions>
+        <Label Content="Column name" Grid.Column="1" Grid.Row="1"/>
+        <Label Content="Column type" Grid.Column="1" Grid.Row="3"/>
+        <Label Content="Reference" Grid.Column="1" Grid.Row="9"/>
+        <TextBox Name="ColumnName" Grid.Column="3" Grid.Row="1" TextWrapping="Wrap" Grid.ColumnSpan="3"/>
+        <TextBox Name="ColumnType" Grid.Column="3" Grid.Row="3" TextWrapping="Wrap" Grid.ColumnSpan="3"/>
+        <CheckBox Name="PrimaryKey" Content="Primary key" Grid.Column="3" Grid.Row="5" Grid.ColumnSpan="3"/>
+        <CheckBox Name="Nullable" Content="Nullable" Grid.Column="3" Grid.Row="7" Grid.ColumnSpan="3"/>
+        <TextBox Name="Reference" Grid.Column="3" Grid.Row="9" TextWrapping="Wrap" Grid.ColumnSpan="3"/>
+        <Button Name="Cancel" Content="Cancel" Grid.Column="3" Grid.Row="11"/>
+        <Button Name="Insert" Content="OK" Grid.Column="5" Grid.Row="11"/>
+
+    </Grid>
+</Window>

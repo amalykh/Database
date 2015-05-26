@@ -72,8 +72,9 @@ namespace DataBaseProject.ViewModels
             try
             {
                 DataGrid dg = (((CreateRowView)_view).ColumnNamesDataGrid);
+                DB.connector.InsertRow(_tableName, ColumnNamesCollection.ToList());
 
-                _updData(_tableName);
+                _updData(_tableName);   
             }
             catch (Exception e)
             {

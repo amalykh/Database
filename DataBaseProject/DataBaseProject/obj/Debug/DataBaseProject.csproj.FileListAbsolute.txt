@@ -72,3 +72,5 @@ C:\Users\Awa\Documents\GitHub\Database\Database\DataBaseProject\DataBaseProject\
 C:\Users\Awa\Documents\GitHub\Database\Database\DataBaseProject\DataBaseProject\obj\Debug\DataBaseProject.csproj.GenerateResource.Cache
 C:\Users\Awa\Documents\GitHub\Database\Database\DataBaseProject\DataBaseProject\obj\Debug\Views\AddTableView.baml
 C:\Users\Awa\Documents\GitHub\Database\Database\DataBaseProject\DataBaseProject\obj\Debug\Views\AddTableView.g.cs
+C:\Users\Awa\Documents\GitHub\Database\Database\DataBaseProject\DataBaseProject\obj\Debug\Views\CreateColumnView.baml
+C:\Users\Awa\Documents\GitHub\Database\Database\DataBaseProject\DataBaseProject\obj\Debug\Views\CreateColumnView.g.cs

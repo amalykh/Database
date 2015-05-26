@@ -13,7 +13,7 @@ using DataBaseProject.DBConnector;
 
 namespace DataBases.DbConnector
 {
-    public class OracleDbConnector : IDbConnector, IDisposable
+    public class OracleDbConnector : IDbConnector
     {
 
         private OracleConnection _databaseConnection;
@@ -40,6 +40,17 @@ namespace DataBases.DbConnector
         {
             if (command == "" || command == null || command == "select * from ") return new DataTable();
 
+            /*using (var cmd = _databaseConnection.CreateCommand())
+            {
+                cmd.CommandText = command;
+                using (DbDataReader reader = cmd.ExecuteReader())
+                {
+                    var dataTable = new DataTable();
+                    dataTable.Load(reader);
+                    return dataTable;
+                }
+            }*/
+
             using (var cmd = _databaseConnection.CreateCommand())
             {
                 cmd.CommandText = command;
@@ -48,6 +59,7 @@ namespace DataBases.DbConnector
                 OracleDataAdapter adapter = new OracleDataAdapter(cmd);
 
                 adapter.Fill(dt);
+                adapter.Dispose();
 
                 return dt;
             }
@@ -87,7 +99,7 @@ namespace DataBases.DbConnector
 
                     OracleCommandBuilder commandBuilder = new OracleCommandBuilder(adapter);
 
-                    adapter.UpdateCommand = commandBuilder.GetUpdateCommand();
+                    //adapter.UpdateCommand = commandBuilder.GetUpdateCommand();
                     adapter.InsertCommand = commandBuilder.GetInsertCommand();
                     adapter.Update(table);
                 }
@@ -129,7 +141,7 @@ namespace DataBases.DbConnector
 
                     OracleCommandBuilder commandBuilder = new OracleCommandBuilder(adapter);
 
-                    adapter.UpdateCommand = commandBuilder.GetUpdateCommand();
+                    //adapter.UpdateCommand = commandBuilder.GetUpdateCommand();
                     adapter.DeleteCommand = commandBuilder.GetDeleteCommand();
                     adapter.Update(table);
                 }
@@ -354,6 +366,9 @@ namespace DataBases.DbConnector
                 inserting.Append(string.Format("PRIMARY KEY ({0})", s));
             }
 
+            while (inserting.Length > 0 && inserting[inserting.Length - 1] == ' ')
+                inserting.Remove(inserting.Length - 1, 1);
+
             ExecuteCommand(string.Format(query, tableName, inserting.ToString()));
 
         }
@@ -367,8 +382,47 @@ namespace DataBases.DbConnector
             ExecuteCommand(string.Format(query, tableName));
         }
 
+        public void AddColumn(string tableName, DbColumnInfo columnInfo)
+        {
+            #region QUERY
+            const string query = "ALTER TABLE {0} ADD {1}";
+            #endregion
+
+            StringBuilder inserting = new StringBuilder("");
+
+            inserting.Append(columnInfo.Name);
+            inserting.Append(" ");
+            inserting.Append(columnInfo.Type);
+            inserting.Append(" ");
+            if (!columnInfo.Nullable)
+                inserting.Append("NOT NULL ");
+            if (columnInfo.PrimaryKey)
+                inserting.Append("PRIMARY KEY ");
+            if (columnInfo.Reference != null && columnInfo.Reference != "")
+            {
+                DbColumnReference reference = DbColumnReference.TryParse(columnInfo.Reference);
+                inserting.Append(string.Format("REFERENCES {0}({1})", reference.TableName, reference.ColumnName));
+                inserting.Append(" ");
+            }
+
+            while (inserting.Length > 0 && inserting[inserting.Length - 1] == ' ')
+                inserting.Remove(inserting.Length - 1, 1);
+
+            ExecuteCommandReader(string.Format(query, tableName, inserting.ToString()));
+        }
+
+        public void DeleteColumn(string tableName, string columnName)
+        {
+            #region QUERY
+            const string query = "ALTER TABLE {0} DROP COLUMN {1}";
+            #endregion
+
+            ExecuteCommandReader(string.Format(query, tableName, columnName));
+        }
+
         public void Dispose()
         {
+            _databaseConnection.Close();
             _databaseConnection.Dispose();
         }
     }

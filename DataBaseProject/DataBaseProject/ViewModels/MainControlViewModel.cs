@@ -48,5 +48,14 @@ namespace DataBaseProject.ViewModels
             TablesControl = new TablesViewModel(windowManager);
         }
 
+        public void LogOut()
+        {
+            DB.connector.Dispose();
+
+            _windowManager.ShowWindow(new LoginViewModel(_windowManager));
+
+            TryClose();
+        }
+
     }
 }

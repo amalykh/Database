@@ -18,6 +18,7 @@ namespace DataBaseProject.ViewModels
     {
         private int _selectedTableIndex;
         private int _selectedDataTableIndex;
+        private int _selectedTableColumnIndex;
         private readonly IWindowManager _windowManager;
         private ObservableCollection<string> _tablesList;
         private ObservableCollection<DbColumnInfo> _columnsInfo;
@@ -26,6 +27,16 @@ namespace DataBaseProject.ViewModels
 
         public delegate void EmptyDelegate();
         public delegate void TableNameDelegate(string tableName);
+
+        public int SelectedTableColumnIndex
+        {
+            get { return _selectedTableColumnIndex; }
+            set
+            {
+                _selectedTableColumnIndex = value;
+                NotifyOfPropertyChange(() => SelectedTableColumnIndex);
+            }
+        }
 
         [ImportingConstructor]
         public TablesViewModel(IWindowManager windowManager)
@@ -82,20 +93,9 @@ namespace DataBaseProject.ViewModels
                 if (_selectedTableIndex == value) return;
                 _selectedTableIndex = value;
 
-                #region tablestabl
-                Columns.Clear();
-                List<DbColumnInfo> l = DB.connector.GetColumnsInfo(SelectedTableName);
-                foreach(var el in l)
-                {
-                    Columns.Add(el);
-                }
-                #endregion
-
-                #region datatab
+                FillSelectedTableColumns(SelectedTableName);
 
                 FillSelectedTableRows(SelectedTableName);
-
-                #endregion
 
                 NotifyOfPropertyChange(() => _selectedTableIndex);
             }
@@ -111,9 +111,31 @@ namespace DataBaseProject.ViewModels
             }
         }
 
-        private void FillSelectedTableRows(string selectedTableName)
+        private void FillSelectedTableRows(string tableName)
         {
-            TableDataTable = DB.connector.ExecuteCommand("select * from " + SelectedTableName);
+            /*if (TableDataTable != null)
+                TableDataTable.Dispose();
+            TableDataTable = new DataTable();
+            TableDataTable.Load(DB.connector.ExecuteCommandReader("select * from " + tableName));*/
+            try
+            {
+                TableDataTable = DB.connector.ExecuteCommand("select * from " + tableName);
+            }
+            catch (Exception e)
+            {
+            }
+        }
+
+        private void FillSelectedTableColumns(string tableName)
+        {
+            Columns.Clear();
+            List<DbColumnInfo> l = DB.connector.GetColumnsInfo(tableName);
+            foreach (var el in l)
+            {
+                Columns.Add(el);
+            }
+
+            //FillSelectedTableRows(tableName);
         }
 
         public void InsertRow()
@@ -178,12 +200,13 @@ namespace DataBaseProject.ViewModels
 
         public void InsertColumn()
         {
-
+            _windowManager.ShowWindow(new CreateColumnViewModel(_windowManager, SelectedTableName, FillSelectedTableColumns));
         }
 
         public void DeleteColumn()
         {
-
+            DB.connector.DeleteColumn(SelectedTableName, _columnsInfo[SelectedTableColumnIndex].Name);
+            FillSelectedTableColumns(SelectedTableName);
         }
 
         public void EditColumn()

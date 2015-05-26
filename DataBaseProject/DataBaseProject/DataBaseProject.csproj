@@ -102,6 +102,9 @@
     <Compile Include="Views\AddTableView.xaml.cs">
       <DependentUpon>AddTableView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\CreateColumnView.xaml.cs">
+      <DependentUpon>CreateColumnView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\CreateRowView.xaml.cs">
       <DependentUpon>CreateRowView.xaml</DependentUpon>
     </Compile>
@@ -149,6 +152,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Views\AddTableView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CreateColumnView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

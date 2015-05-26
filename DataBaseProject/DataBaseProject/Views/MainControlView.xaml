@@ -5,7 +5,15 @@
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         Title="MainControlView" Height="783" Width="1287">
     <Grid>
-        <TabControl>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1202*"/>
+            <ColumnDefinition Width="77*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="23*"/>
+            <RowDefinition Height="729*"/>
+        </Grid.RowDefinitions>
+        <TabControl Grid.Row="1" Grid.ColumnSpan="2">
             <TabItem Header="SQL Commands">
                 <ContentControl cal:View.Model="{Binding RunControl}"/>
             </TabItem>
@@ -13,6 +21,7 @@
                 <ContentControl cal:View.Model="{Binding TablesControl}"/>
             </TabItem>
         </TabControl>
+        <Button Name="LogOut" Content="Log out" Grid.Column="1"/>
 
     </Grid>
 </Window>

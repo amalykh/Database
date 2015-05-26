@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DataBases.DbConnector
 {
-    public interface IDbConnector
+    public interface IDbConnector : IDisposable
     {
         DataTable ExecuteCommand(string command);
         DbDataReader ExecuteCommandReader(string command);
@@ -25,5 +25,7 @@ namespace DataBases.DbConnector
         DbColumnReference GetColumnReference(DbColumnReference column);
         void AddTable(string tableName, IEnumerable<DbColumnInfo> columns);
         void DropTable(string tableName);
+        void AddColumn(string tableName, DbColumnInfo columnInfo);
+        void DeleteColumn(string tableName, string columnName);
     }
 }

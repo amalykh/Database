@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\Awa\Documents\GitHub\Database\Database\DataBaseProject\DataBaseProject\App.xaml
-62051281698
+7-1635349159
 
-26-67466555
+27-1035797874
 23787328253
-Views\AddTableView.xaml;Views\CreateRowView.xaml;Views\LoginView.xaml;Views\MainControlView.xaml;Views\RunCommandView.xaml;Views\TablesView.xaml;
+Views\AddTableView.xaml;Views\CreateColumnView.xaml;Views\CreateRowView.xaml;Views\LoginView.xaml;Views\MainControlView.xaml;Views\RunCommandView.xaml;Views\TablesView.xaml;
 
 False
 
