@@ -9,6 +9,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace DataBaseProject.ViewModels
@@ -19,6 +20,8 @@ namespace DataBaseProject.ViewModels
         private object _view;
         private ObservableCollection<DbColumnNamesModel> _columnNamesCollection;
         private string _tableName;
+        private string SelectedTableName;
+        private TablesViewModel.TableNameDelegate _updData;
 
         public ObservableCollection<DbColumnNamesModel> ColumnNamesCollection
         {
@@ -46,7 +49,7 @@ namespace DataBaseProject.ViewModels
         }
         
         [ImportingConstructor]
-        public CreateRowViewModel(IWindowManager windowManager, string tableName, object[] itemValues = null)
+        public CreateRowViewModel(IWindowManager windowManager, string tableName, TablesViewModel.TableNameDelegate updData, object[] itemValues = null)
         {
             _windowManager = windowManager;
             _columnNamesCollection = new ObservableCollection<DbColumnNamesModel>();
@@ -60,14 +63,23 @@ namespace DataBaseProject.ViewModels
                 _columnNamesCollection.Add(cur);
             }
             _tableName = tableName;
+            this._updData = updData;
         }
 
         public void Insert()
         {
 
-            DataGrid dg = (((CreateRowView)_view).ColumnNamesDataGrid);
+            try
+            {
+                DataGrid dg = (((CreateRowView)_view).ColumnNamesDataGrid);
 
-            DB.connector.InsertRow(_tableName, ColumnNamesCollection.ToList());
+                _updData(_tableName);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, "Inserting/editing row error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
 
             TryClose();
         }

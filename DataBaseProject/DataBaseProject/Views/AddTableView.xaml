@@ -1,0 +1,31 @@
+﻿<Window x:Class="DataBaseProject.Views.AddTableView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="AddTableView" Height="395" Width="506">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="17*"/>
+            <ColumnDefinition Width="121*"/>
+            <ColumnDefinition Width="167*"/>
+            <ColumnDefinition Width="68*"/>
+            <ColumnDefinition Width="36*"/>
+            <ColumnDefinition Width="63*"/>
+            <ColumnDefinition Width="26*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="26*"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="208*"/>
+            <RowDefinition Height="26*"/>
+            <RowDefinition Height="21*"/>
+            <RowDefinition Height="33*"/>
+        </Grid.RowDefinitions>
+        <Button Name="Cancel" Content="Cancel" Grid.Column="3" Grid.Row="5"/>
+        <Button Name="Add" Content="Add" Grid.Column="5" Grid.Row="5"/>
+        <Label Content="Table name" Grid.Column="1" Grid.Row="1"/>
+        <TextBox Name="TableName" Grid.Column="2" Grid.Row="1" TextWrapping="Wrap" Text="" Grid.ColumnSpan="4"/>
+        <DataGrid Name="DataGrid" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="5" ItemsSource="{Binding ColumnsDataCollection}" AutoGeneratingColumn="DataGrid_AutoGeneratingColumn"/>
+
+    </Grid>
+</Window>

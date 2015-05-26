@@ -30,5 +30,23 @@ namespace DataBaseProject.DBConnector
         {
             return TableName + "." + ColumnName;
         }
+
+        public static DbColumnReference TryParse(string s)
+        {
+            var t = new DbColumnReference();
+
+            t.Owner = null;
+            try
+            {
+                t.TableName = s.Split('.')[0];
+                t.ColumnName = s.Split('.')[1];
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Reference must be something like this: TableName.ColumnName");
+            }
+
+            return t;
+        }
     }
 }

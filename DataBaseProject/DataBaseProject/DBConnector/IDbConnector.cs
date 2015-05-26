@@ -23,5 +23,7 @@ namespace DataBases.DbConnector
 
         List<DbColumnInfo> GetColumnsInfo(String tableName);
         DbColumnReference GetColumnReference(DbColumnReference column);
+        void AddTable(string tableName, IEnumerable<DbColumnInfo> columns);
+        void DropTable(string tableName);
     }
 }

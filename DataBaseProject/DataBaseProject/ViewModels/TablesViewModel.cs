@@ -24,6 +24,9 @@ namespace DataBaseProject.ViewModels
         private DataTable _dataTable;
         private const string oracleDeleteError = "Cannot delete";
 
+        public delegate void EmptyDelegate();
+        public delegate void TableNameDelegate(string tableName);
+
         [ImportingConstructor]
         public TablesViewModel(IWindowManager windowManager)
         {
@@ -32,11 +35,17 @@ namespace DataBaseProject.ViewModels
             _tablesList = new ObservableCollection<string>();
             _columnsInfo = new ObservableCollection<DbColumnInfo>();
 
+            UpdateTablesList();
+        }
+
+        public void UpdateTablesList()
+        {
             List<string> tablesList = DB.connector.GetTablesList();
 
+            Tables.Clear();
             foreach (var el in tablesList)
             {
-                _tablesList.Add(el);
+                Tables.Add(el);
             }
         }
 
@@ -52,7 +61,17 @@ namespace DataBaseProject.ViewModels
 
         public string SelectedTableName
         {
-            get { return _tablesList[_selectedTableIndex]; }
+            get
+            {
+                try
+                {
+                    return _tablesList[_selectedTableIndex];
+                }
+                catch(Exception e)
+                {
+                    return null;
+                }
+            }
         }
 
         public int SelectedTableIndex
@@ -74,7 +93,7 @@ namespace DataBaseProject.ViewModels
 
                 #region datatab
 
-                FillCommand(SelectedTableName);
+                FillSelectedTableRows(SelectedTableName);
 
                 #endregion
 
@@ -92,14 +111,16 @@ namespace DataBaseProject.ViewModels
             }
         }
 
-        private void FillCommand(string selectedTableName)
+        private void FillSelectedTableRows(string selectedTableName)
         {
             TableDataTable = DB.connector.ExecuteCommand("select * from " + SelectedTableName);
         }
 
         public void InsertRow()
         {
-            _windowManager.ShowWindow(new CreateRowViewModel(_windowManager, SelectedTableName));
+            TableNameDelegate updData = FillSelectedTableRows;
+
+            _windowManager.ShowWindow(new CreateRowViewModel(_windowManager, SelectedTableName, updData));
         }
 
         public void DeleteRow()
@@ -125,6 +146,8 @@ namespace DataBaseProject.ViewModels
                 MessageBox.Show("You need to select row to delete", oracleDeleteError, MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
+
+            FillSelectedTableRows(SelectedTableName);
         }
 
         public void EditRow()
@@ -133,7 +156,7 @@ namespace DataBaseProject.ViewModels
             {
                 DataRow row = TableDataTable.Rows[SelectedDataTableIndex];
                 DB.connector.DeleteRow(SelectedTableName, row.ItemArray);
-                _windowManager.ShowWindow(new CreateRowViewModel(_windowManager, SelectedTableName, row.ItemArray));
+                _windowManager.ShowWindow(new CreateRowViewModel(_windowManager, SelectedTableName, FillSelectedTableRows, row.ItemArray));
 
             }
             catch (IndexOutOfRangeException e)
@@ -166,6 +189,22 @@ namespace DataBaseProject.ViewModels
         public void EditColumn()
         {
 
+        }
+
+
+
+        public void AddTable()
+        {
+            EmptyDelegate updTables = UpdateTablesList;
+
+            _windowManager.ShowWindow(new AddTableViewModel(_windowManager, updTables));
+        }
+
+        public void DropTable()
+        {
+            DB.connector.DropTable(SelectedTableName);
+            SelectedTableIndex--;
+            UpdateTablesList();
         }
 
         public ObservableCollection<string> Tables { get { return _tablesList; } }

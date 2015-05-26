@@ -5,24 +5,30 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" d:DesignWidth="602" d:DesignHeight="391">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="363*"/>
+            <RowDefinition Height="28*"/>
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="155*"/>
             <ColumnDefinition Width="53*"/>
             <ColumnDefinition Width="437*"/>
         </Grid.ColumnDefinitions>
-        <Grid Background="#FFE5E5E5" Grid.ColumnSpan="3">
+        <Grid Background="#FFE5E5E5" Grid.ColumnSpan="3" Grid.RowSpan="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="64*"/>
-                <RowDefinition Height="327*"/>
+                <RowDefinition Height="279*"/>
+                <RowDefinition Height="21*"/>
+                <RowDefinition Height="5*"/>
+                <RowDefinition Height="22*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="142*"/>
                 <ColumnDefinition Width="503*"/>
             </Grid.ColumnDefinitions>
             <ListBox Name="TablesListDataGrid" SelectedIndex="{Binding SelectedTableIndex}" SelectionMode="Single"
-                              ItemsSource="{Binding Tables}" Grid.RowSpan="2">
-            </ListBox>
-            <TabControl Grid.Column="1" Grid.RowSpan="2">
+                              ItemsSource="{Binding Tables}" Grid.RowSpan="2"/>
+            <TabControl Grid.Column="1" Grid.RowSpan="5">
                 <TabItem Header="Table">
                     <Grid Background="#FFE5E5E5">
                         <Grid.ColumnDefinitions>
@@ -96,6 +102,8 @@
                     </Grid>
                 </TabItem>
             </TabControl>
+            <Button Content="Add table" Grid.Row="2" Name="AddTable"/>
+            <Button Content="Drop table" Grid.Row="4" Name="DropTable"/>
         </Grid>
     </Grid>
 </UserControl>

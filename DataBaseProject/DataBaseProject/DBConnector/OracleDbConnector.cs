@@ -38,6 +38,8 @@ namespace DataBases.DbConnector
 
         public DataTable ExecuteCommand(string command)
         {
+            if (command == "" || command == null || command == "select * from ") return new DataTable();
+
             using (var cmd = _databaseConnection.CreateCommand())
             {
                 cmd.CommandText = command;
@@ -63,6 +65,8 @@ namespace DataBases.DbConnector
 
         public void InsertRow(string tableName, List<DbColumnNamesModel> l)
         {
+            if (tableName == null || tableName == "") return;
+
             using (var cmd = _databaseConnection.CreateCommand())
             {
                 cmd.CommandText = "select * from " + tableName;
@@ -92,6 +96,8 @@ namespace DataBases.DbConnector
 
         public void DeleteRow(string tableName, object[] itemArray)
         {
+            if (tableName == "" || tableName == null) return;
+
             using (var cmd = _databaseConnection.CreateCommand())
             {
                 cmd.CommandText = "select * from " + tableName;
@@ -151,6 +157,7 @@ namespace DataBases.DbConnector
 
         public IDictionary<string, int> GetPrimaryKeys(string tableName)
         {
+            if (tableName == "" || tableName == null) return new Dictionary<string, int>();
 
             #region QUERY
             const string query = @"SELECT cols.column_name, cols.position " + @"FROM all_constraints cons" +
@@ -180,6 +187,8 @@ namespace DataBases.DbConnector
 
         public List<string> GetColumnsList(string tableName)
         {
+            if (tableName == "" || tableName == null) return new List<string>();
+
             List<string> res = new List<string>();
             using (var cmd = _databaseConnection.CreateCommand())
             {
@@ -198,6 +207,8 @@ namespace DataBases.DbConnector
 
         public DataTable GetDataTable(string tableName)
         {
+            if (tableName == "" || tableName == null)
+                return new DataTable();
             return ExecuteCommand("select * from " + tableName);
         }
 
@@ -231,6 +242,8 @@ namespace DataBases.DbConnector
 
         public IDictionary<string, DbColumnReference> GetTableReferences(string tableName)
         {
+            if (tableName == "" || tableName == null) return new Dictionary<string, DbColumnReference>();
+
             #region QUERY
             const string query = "SELECT c.owner, c_pk.table_name r_table_name,  b.column_name r_column_name " +
   "FROM user_cons_columns a JOIN user_constraints c ON a.owner = c.owner AND a.constraint_name = c.constraint_name JOIN user_constraints c_pk ON c.r_owner = c_pk.owner " +
@@ -262,8 +275,11 @@ namespace DataBases.DbConnector
             return res;
         }
 
-        public List<DbColumnInfo> GetColumnsInfo(string tableName) //TABLE NAME TO UPPER CASE!
+        public List<DbColumnInfo> GetColumnsInfo(string tableName)
         {
+            if (tableName == "" || tableName == null) return new List<DbColumnInfo>();
+
+
             string query = "SELECT COLUMN_NAME, DATA_TYPE, NULLABLE, DATA_DEFAULT FROM ALL_TAB_COLUMNS WHERE TABLE_NAME = \'{0}\' " +
                 "AND owner = \'{1}\'";
 
@@ -280,14 +296,14 @@ namespace DataBases.DbConnector
                     while (reader.Read())
                     {
                         DbColumnInfo curColumn = new DbColumnInfo();
-                        curColumn.ColumnName = reader.GetString(0);
-                        curColumn.DataType = reader.GetString(1);
+                        curColumn.Name = reader.GetString(0);
+                        curColumn.Type = reader.GetString(1);
                         curColumn.Nullable = (reader.GetString(2) == "Y");
-                        curColumn.PrimaryKey = ((primaryKeys.ContainsKey(curColumn.ColumnName)) ? (primaryKeys[curColumn.ColumnName].ToString()) : ("-"));
+                        curColumn.PrimaryKey = (primaryKeys.ContainsKey(curColumn.Name));
 
                         var references = GetTableReferences(tableName);
 
-                        curColumn.Reference = (references.ContainsKey(curColumn.ColumnName)) ? (references[curColumn.ColumnName].ToString()) : ("-");
+                        curColumn.Reference = (references.ContainsKey(curColumn.Name)) ? (references[curColumn.Name].ToString()) : ("-");
                         res.Add(curColumn);
                     }
 
@@ -295,6 +311,60 @@ namespace DataBases.DbConnector
             }
 
             return res;
+        }
+
+        public void AddTable(string tableName, IEnumerable<DbColumnInfo> columns)
+        {
+            #region QUERY
+            const string query = "CREATE TABLE {0} ( {1} )";
+            #endregion
+
+            StringBuilder inserting = new StringBuilder("");
+
+            List<string> toAdd = new List<string>();
+
+            List<string> primaries = new List<string>();
+
+            foreach (var el in columns)
+            {
+                toAdd.Add(el.CreateString());
+                if (el.PrimaryKey)
+                    primaries.Add(el.Name);
+            }
+
+            for (int i = 0; i < toAdd.Count; i++)
+            {
+                inserting.Append(toAdd[i]);
+                if (i != toAdd.Count - 1)
+                    inserting.Append(", ");
+                else
+                    inserting.Append(" ");
+            }
+
+            if (primaries.Count > 0)
+            {
+                inserting.Append(", ");
+                string s = "";
+                for (int i = 0; i < primaries.Count; i++)
+                {
+                    s += primaries[i];
+                    if (i != primaries.Count - 1)
+                        s += ", ";
+                }
+                inserting.Append(string.Format("PRIMARY KEY ({0})", s));
+            }
+
+            ExecuteCommand(string.Format(query, tableName, inserting.ToString()));
+
+        }
+
+        public void DropTable(string tableName)
+        {
+            #region QUERY
+            const string query = "DROP TABLE {0}";
+            #endregion
+
+            ExecuteCommand(string.Format(query, tableName));
         }
 
         public void Dispose()

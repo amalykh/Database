@@ -34,3 +34,41 @@ C:\Users\Awa\Documents\Visual Studio 2013\Projects\DataBaseProject\DataBaseProje
 C:\Users\Awa\Documents\Visual Studio 2013\Projects\DataBaseProject\DataBaseProject\obj\Debug\Views\RunCommandView.g.cs
 C:\Users\Awa\Documents\Visual Studio 2013\Projects\DataBaseProject\DataBaseProject\obj\Debug\Views\TablesView.baml
 C:\Users\Awa\Documents\Visual Studio 2013\Projects\DataBaseProject\DataBaseProject\obj\Debug\Views\TablesView.g.cs
+C:\Users\Awa\Documents\GitHub\Database\Database\DataBaseProject\DataBaseProject\bin\Debug\DataBaseProject.exe.config
+C:\Users\Awa\Documents\GitHub\Database\Database\DataBaseProject\DataBaseProject\obj\Debug\DataBaseProject.exe
+C:\Users\Awa\Documents\GitHub\Database\Database\DataBaseProject\DataBaseProject\obj\Debug\DataBaseProject.pdb
+C:\Users\Awa\Documents\GitHub\Database\Database\DataBaseProject\DataBaseProject\bin\Debug\DataBaseProject.exe
+C:\Users\Awa\Documents\GitHub\Database\Database\DataBaseProject\DataBaseProject\bin\Debug\DataBaseProject.pdb
+C:\Users\Awa\Documents\GitHub\Database\Database\DataBaseProject\DataBaseProject\bin\Debug\Caliburn.Micro.Autofac.dll
+C:\Users\Awa\Documents\GitHub\Database\Database\DataBaseProject\DataBaseProject\bin\Debug\Caliburn.Micro.dll
+C:\Users\Awa\Documents\GitHub\Database\Database\DataBaseProject\DataBaseProject\bin\Debug\EntityFramework.dll
+C:\Users\Awa\Documents\GitHub\Database\Database\DataBaseProject\DataBaseProject\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Awa\Documents\GitHub\Database\Database\DataBaseProject\DataBaseProject\bin\Debug\Oracle.ManagedDataAccess.dll
+C:\Users\Awa\Documents\GitHub\Database\Database\DataBaseProject\DataBaseProject\bin\Debug\Oracle.ManagedDataAccess.EntityFramework.dll
+C:\Users\Awa\Documents\GitHub\Database\Database\DataBaseProject\DataBaseProject\bin\Debug\System.Windows.Interactivity.dll
+C:\Users\Awa\Documents\GitHub\Database\Database\DataBaseProject\DataBaseProject\bin\Debug\Caliburn.Micro.pdb
+C:\Users\Awa\Documents\GitHub\Database\Database\DataBaseProject\DataBaseProject\bin\Debug\Caliburn.Micro.xml
+C:\Users\Awa\Documents\GitHub\Database\Database\DataBaseProject\DataBaseProject\bin\Debug\EntityFramework.xml
+C:\Users\Awa\Documents\GitHub\Database\Database\DataBaseProject\DataBaseProject\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Awa\Documents\GitHub\Database\Database\DataBaseProject\DataBaseProject\bin\Debug\System.Windows.Interactivity.xml
+C:\Users\Awa\Documents\GitHub\Database\Database\DataBaseProject\DataBaseProject\obj\Debug\DataBaseProject.csprojResolveAssemblyReference.cache
+C:\Users\Awa\Documents\GitHub\Database\Database\DataBaseProject\DataBaseProject\obj\Debug\Views\CreateRowView.baml
+C:\Users\Awa\Documents\GitHub\Database\Database\DataBaseProject\DataBaseProject\obj\Debug\Views\LoginView.baml
+C:\Users\Awa\Documents\GitHub\Database\Database\DataBaseProject\DataBaseProject\obj\Debug\Views\MainControlView.baml
+C:\Users\Awa\Documents\GitHub\Database\Database\DataBaseProject\DataBaseProject\obj\Debug\Views\RunCommandView.baml
+C:\Users\Awa\Documents\GitHub\Database\Database\DataBaseProject\DataBaseProject\obj\Debug\Views\TablesView.baml
+C:\Users\Awa\Documents\GitHub\Database\Database\DataBaseProject\DataBaseProject\obj\Debug\Views\CreateRowView.g.cs
+C:\Users\Awa\Documents\GitHub\Database\Database\DataBaseProject\DataBaseProject\obj\Debug\Views\LoginView.g.cs
+C:\Users\Awa\Documents\GitHub\Database\Database\DataBaseProject\DataBaseProject\obj\Debug\Views\MainControlView.g.cs
+C:\Users\Awa\Documents\GitHub\Database\Database\DataBaseProject\DataBaseProject\obj\Debug\Views\RunCommandView.g.cs
+C:\Users\Awa\Documents\GitHub\Database\Database\DataBaseProject\DataBaseProject\obj\Debug\Views\TablesView.g.cs
+C:\Users\Awa\Documents\GitHub\Database\Database\DataBaseProject\DataBaseProject\obj\Debug\App.g.cs
+C:\Users\Awa\Documents\GitHub\Database\Database\DataBaseProject\DataBaseProject\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Awa\Documents\GitHub\Database\Database\DataBaseProject\DataBaseProject\obj\Debug\DataBaseProject_MarkupCompile.cache
+C:\Users\Awa\Documents\GitHub\Database\Database\DataBaseProject\DataBaseProject\obj\Debug\DataBaseProject_MarkupCompile.lref
+C:\Users\Awa\Documents\GitHub\Database\Database\DataBaseProject\DataBaseProject\obj\Debug\App.baml
+C:\Users\Awa\Documents\GitHub\Database\Database\DataBaseProject\DataBaseProject\obj\Debug\DataBaseProject.g.resources
+C:\Users\Awa\Documents\GitHub\Database\Database\DataBaseProject\DataBaseProject\obj\Debug\DataBaseProject.Properties.Resources.resources
+C:\Users\Awa\Documents\GitHub\Database\Database\DataBaseProject\DataBaseProject\obj\Debug\DataBaseProject.csproj.GenerateResource.Cache
+C:\Users\Awa\Documents\GitHub\Database\Database\DataBaseProject\DataBaseProject\obj\Debug\Views\AddTableView.baml
+C:\Users\Awa\Documents\GitHub\Database\Database\DataBaseProject\DataBaseProject\obj\Debug\Views\AddTableView.g.cs

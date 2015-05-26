@@ -92,14 +92,15 @@
     <Compile Include="Models\DbColumnNamesModel.cs" />
     <Compile Include="Models\DbTableNamesModel.cs" />
     <Compile Include="Models\LoginInfoModel.cs" />
+    <Compile Include="ViewModels\AddTableViewModel.cs" />
     <Compile Include="ViewModels\CreateColumnViewModel.cs" />
     <Compile Include="ViewModels\CreateRowViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainControlViewModel.cs" />
     <Compile Include="ViewModels\RunCommandViewModel.cs" />
     <Compile Include="ViewModels\TablesViewModel.cs" />
-    <Compile Include="Views\CreateColumnView.xaml.cs">
-      <DependentUpon>CreateColumnView.xaml</DependentUpon>
+    <Compile Include="Views\AddTableView.xaml.cs">
+      <DependentUpon>AddTableView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\CreateRowView.xaml.cs">
       <DependentUpon>CreateRowView.xaml</DependentUpon>
@@ -147,7 +148,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Views\CreateColumnView.xaml">
+    <Page Include="Views\AddTableView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

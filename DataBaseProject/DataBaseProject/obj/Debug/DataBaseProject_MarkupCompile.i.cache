@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Awa\documents\visual studio 2013\Projects\DataBaseProject\DataBaseProject\obj\Debug\
+C:\Users\Awa\Documents\GitHub\Database\Database\DataBaseProject\DataBaseProject\obj\Debug\
 DataBaseProject
 none
 false
 DEBUG;TRACE
-C:\Users\Awa\documents\visual studio 2013\Projects\DataBaseProject\DataBaseProject\App.xaml
-61878571898
+C:\Users\Awa\Documents\GitHub\Database\Database\DataBaseProject\DataBaseProject\App.xaml
+62051281698
 
-29-2051775007
-23671327026
-Views\CreateColumnView.xaml;Views\CreateRowView.xaml;Views\LoginView.xaml;Views\MainControlView.xaml;Views\RunCommandView.xaml;Views\TablesView.xaml;
+301079621973
+23787328253
+Views\AddTableView.xaml;Views\CreateRowView.xaml;Views\LoginView.xaml;Views\MainControlView.xaml;Views\RunCommandView.xaml;Views\TablesView.xaml;
 
 False
 
